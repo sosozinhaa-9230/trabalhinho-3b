@@ -181,6 +181,10 @@ function updateMovement(delta) {
     }
 }
 
+document.addEventListener('mousedown', (e) => {
+    shoot()
+})
+
 function animate( time ) {
     renderer.render( scene, camera );
     updateMovement(5)
