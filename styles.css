@@ -1,3 +1,37 @@
 body {
     margin: 0;
 }
+
+#blocker {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.795);
+    position: absolute;
+    color: #ffffff;
+    h1 {
+        color: #ffffff;
+        text-transform: uppercase;
+        text-align: center;
+        width: fit-content;
+        height: fit-content;
+        margin-top: calc(50vh - 0.5em);
+        margin-left: calc(50vw - 425px);
+        text-shadow: 3px 3px 3px black;
+        padding: 0 0;
+    }
+}
+
+#reticula {
+    width: 3px;
+    height: 3px;
+    background-color: white;
+    position: absolute;
+    top: calc(50vh - 3px);
+    left: calc(50vw - 3px);
+}
+
+.dm-mono {
+  font-family: "DM Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
