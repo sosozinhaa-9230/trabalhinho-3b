@@ -149,9 +149,6 @@ for (let i = 0; i < ENEMY_COUNT; i++) {
 const raycaster = new THREE.Raycaster();
 const screenCenter = new THREE.Vector2(0, 0);
 
-let recoilTimer = 0;
-let flashTimer = 0;
-
 function shoot() {
     raycaster.setFromCamera(screenCenter, camera);
     const hits = raycaster.intersectObjects(enemies);
@@ -159,8 +156,6 @@ function shoot() {
         const hitMesh = hits[0].object;
         hitMesh.position.copy(randomEnemyPosition());
     }
-    recoilTimer = 0.1;
-    flashTimer = 0.06;
 }
 
 const MOVE_SPEED = 0.01
@@ -189,12 +184,5 @@ function updateMovement(delta) {
 function animate( time ) {
     renderer.render( scene, camera );
     updateMovement(5)
-
-    if (recoilTimer > 0) {
-        recoilTimer -= delta;
-        gun.position.z = gunRestZ + 0.08 * (recoilTimer / 0.1);
-    } else {
-        gun.position.z = gunRestZ;
-    }
 }
 renderer.setAnimationLoop( animate );
