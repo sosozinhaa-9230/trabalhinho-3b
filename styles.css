@@ -30,6 +30,23 @@ body {
     left: calc(50vw - 3px);
 }
 
+#UI {
+    color: white;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: #00000000;
+    display: flex;
+    pointer-events: none;
+    #ammo-count {
+        font-size: 2em;
+        position: absolute;
+        margin: 0 0;
+        bottom: 10px;
+        right: 50px;
+    }
+}
+
 .dm-mono {
   font-family: "DM Mono", monospace;
   font-weight: 400;

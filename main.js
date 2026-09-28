@@ -2,6 +2,8 @@ import * as THREE from 'three';
 const skyBoxLoader = new THREE.CubeTextureLoader();
 skyBoxLoader.setPath('textures/skybox/');
 
+let ammo = 20
+
 //dimensõoes assumidas para escala como: 1u = 1m
 
 //algoritimo a* (e suas dependencias)
@@ -476,17 +478,28 @@ for (let i = 0; i < ENEMY_COUNT; i++) {
 //shooting
 const raycaster = new THREE.Raycaster();
 const screenCenter = new THREE.Vector2(0, 0);
+const ammoCounterEl = document.querySelector('#ammo-count')
 function shoot() {
-  raycaster.setFromCamera(screenCenter, camera);
-  const hits = raycaster.intersectObjects(enemies.map(e => e.mesh).concat(wallMeshes));
-  muzzleFlash.intensity = 1000
-  if (hits.length > 0) {
-    const hitMesh = hits[0].object;
-    console.log(hitMesh)
-    if (hitMesh.name === "enemy") {
-      hitMesh.position.copy(randomEnemyPosition());
+  if (ammo >= 1) {
+    const fireSFx = new Audio('SFx/mixkit-game-gun-shot-1662.mp3');
+    fireSFx.play();
+    raycaster.setFromCamera(screenCenter, camera);
+    const hits = raycaster.intersectObjects(enemies.map(e => e.mesh).concat(wallMeshes));
+    muzzleFlash.intensity = 1000
+    if (hits.length > 0) {
+      const hitMesh = hits[0].object;
+      console.log(hitMesh)
+      if (hitMesh.name === "enemy") {
+        hitMesh.position.copy(randomEnemyPosition());
+      }
     }
+    ammo -= 1;
+  } else {
+    const noAmmoSFx = new Audio('SFx/freesound_community-empty-gun-shot-6209.mp3');
+    noAmmoSFx.play();
+    console.log('empty')
   }
+  ammoCounterEl.innerHTML = `Ammo: ${ammo}`
 }
 
 let isJumping = false
@@ -516,21 +529,29 @@ function updateMovement(delta) {
   }
 
   if(playerRig.position.y > 1.8) {
-    isJumping = true
+    isJumping = true;
   }
   if (playerRig.position.y < 1.8) {
-    playerRig.position.y = 1.8
-    verticalG = 0
-    isJumping = false
+    playerRig.position.y = 1.8;
+    verticalG = 0;
+    isJumping = false;
   }
   playerRig.position.y -= verticalG
   if (isJumping === true) {
-    verticalG += 0.001
+    verticalG += 0.001;
   }
 }
 
 document.addEventListener('mousedown', (e) => {
-  shoot()
+  shoot();
+})
+document.addEventListener('keypress', (e) => {
+  if (e.code === 'KeyR') {
+    const reloadSFx = new Audio('SFx/freesound_community-1911-reload-6248.mp3');
+    ammo = 20;
+    reloadSFx.play();
+    ammoCounterEl.innerHTML = `Ammo: ${ammo}`
+  }
 })
 
 const clock = new THREE.Clock();
