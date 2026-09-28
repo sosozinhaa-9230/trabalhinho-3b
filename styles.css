@@ -24,7 +24,7 @@ body {
 #reticula {
     width: 3px;
     height: 3px;
-    background-color: white;
+    background-color: rgb(60, 255, 0);
     position: absolute;
     top: calc(50vh - 3px);
     left: calc(50vw - 3px);
