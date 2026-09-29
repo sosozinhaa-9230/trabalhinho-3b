@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+
 const skyBoxLoader = new THREE.CubeTextureLoader();
 skyBoxLoader.setPath('textures/skybox/');
 
@@ -40,8 +41,8 @@ function getNeighbors(grid, node) {
   const dirs = [
     { x: 0, z: 1 }, { x: 0, z: -1 },
     { x: 1, z: 0 }, { x: -1, z: 0 },
-    { x: 1, z: 1 }, { x: -1, z: -1 },
-    { x: 1, z: -1 }, { x: -1, z: 1 },
+    // { x: 1, z: 1 }, { x: -1, z: -1 },
+    // { x: 1, z: -1 }, { x: -1, z: 1 },
   ];
   
   for (const dir of dirs) {
@@ -373,9 +374,12 @@ buildWall(0, 5, -50, 100, 10, 2);
 buildWall(0, 5, 50, 100, 10, 2);
 buildWall(50, 5, 0, 2, 10, 100);
 buildWall(-50, 5, 0, 2, 10, 100);
-buildWall(0, 5, -15, 10, 10, 10)
 
-console.log(wallColisionMeshes)
+buildWall(0, 5, -15, 10, 10, 10);
+
+buildWall(-10, 5, 15, 1, 10, 10);
+
+console.log(wallColisionMeshes);
 
 const gridConfig = { cellSize: 2, originX: -50, originZ: -50 };
 const grid = buildGridFromBoxes(
@@ -484,13 +488,18 @@ function shoot() {
     const fireSFx = new Audio('SFx/mixkit-game-gun-shot-1662.mp3');
     fireSFx.play();
     raycaster.setFromCamera(screenCenter, camera);
-    const hits = raycaster.intersectObjects(enemies.map(e => e.mesh).concat(wallMeshes));
+    const hits = raycaster.intersectObjects((enemies.map(e => e.mesh).concat(wallMeshes)).concat(plane));
     muzzleFlash.intensity = 1000
     if (hits.length > 0) {
       const hitMesh = hits[0].object;
       console.log(hitMesh)
       if (hitMesh.name === "enemy") {
         hitMesh.position.copy(randomEnemyPosition());
+      } else {
+        const wallHitSFx = new Audio('SFx/freesound_community-080998_bullet-hit-39870.mp3');
+        setTimeout(() => {
+          wallHitSFx.play();
+        }, 50);
       }
     }
     ammo -= 1;
