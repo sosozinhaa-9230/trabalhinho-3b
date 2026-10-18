@@ -1,5 +1,49 @@
+@font-face {
+    font-family: Hitmarker;
+    src: url(/fonts/HitmarkerFonts/18082023_Hitmarker/Display/Normal/WOFF/HitmarkerNormal-Bold.woff);
+    font-style: bold;
+}
+
 body {
     margin: 0;
+    background: linear-gradient(182deg,rgba(9, 24, 31, 1) 0%, rgba(6, 18, 18, 1) 57%, rgba(2, 9, 23, 1) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+    animation: background-slide linear both;
+    animation-timeline: scroll(root); /* not available on firefox :( */
+    #menu {
+        header {
+            position: fixed;
+            width: 100vw;
+            top: 0;
+            z-index: -1;
+            top: calc(50vh - 20rem);
+            h1 {
+                color: white;
+                font-size: 30rem;
+                text-align: center;
+                margin-top: 10px;
+            }
+        }
+        main {
+            position: relative;
+            margin-top: 90vh;
+            margin-left: auto;
+            margin-right: auto;
+            height: 100vh;
+            animation: fade-in linear both;
+            animation-timeline: scroll(root); /* not available on firefox :( */
+            border: 4px solid #0a0a0a;
+            opacity: 0.8;
+            width: 60vw;
+            background-color: rgb(8, 8, 8);
+            #log-in {
+                width: 95%;
+                margin: auto;
+            }
+        }
+    }
 }
 
 #blocker {
@@ -8,8 +52,9 @@ body {
     background-color: rgba(0, 0, 0, 0.795);
     position: absolute;
     color: #ffffff;
+    display: none;
     h1 {
-        color: #ffffff;
+        color: white;
         text-transform: uppercase;
         text-align: center;
         width: fit-content;
@@ -26,17 +71,18 @@ body {
     height: 3px;
     background-color: rgb(60, 255, 0);
     position: absolute;
+    display: none;
     top: calc(50vh - 3px);
     left: calc(50vw - 3px);
 }
 
 #UI {
+    display: none;
     color: white;
     position: absolute;
     width: 100vw;
     height: 100vh;
     background-color: #00000000;
-    display: flex;
     pointer-events: none;
     #ammo-count {
         font-size: 2em;
@@ -51,4 +97,22 @@ body {
   font-family: "DM Mono", monospace;
   font-weight: 400;
   font-style: normal;
+}
+
+.Hitmarker {
+  font-family: "Hitmarker";
+  font-style: bold;
+}
+
+::selection {
+    background-color: #00ffdd70;
+}
+
+@keyframes fade-in {
+  from { opacity: 0.3; border-radius: 50px; width: 50vw; background-color: rgb(0, 0, 0)}
+  to { opacity: 0.9; border-radius: 0; width: 60vw; background-color: rgb(8, 8, 8)}
+}
+@keyframes background-slide {
+  from { background: linear-gradient(182deg,rgba(9, 24, 31, 1) 0%, rgba(6, 18, 18, 1) 57%, rgba(2, 9, 23, 1) 100%); }
+  to { background: linear-gradient(182deg,rgba(9, 24, 31, 1) 0%, rgba(2, 9, 23, 1) 57%, rgb(4, 2, 29) 100%); }
 }

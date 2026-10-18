@@ -4,6 +4,7 @@ const skyBoxLoader = new THREE.CubeTextureLoader();
 skyBoxLoader.setPath('textures/skybox/');
 
 let ammo = 20
+let isActive = false
 
 //dimensõoes assumidas para escala como: 1u = 1m
 
@@ -568,7 +569,7 @@ const clock = new THREE.Clock();
 function animate() {
   const deltaTime = clock.getDelta();
   
-  if (isLocked) {
+  if (isLocked && isActive) {
     updateMovement(5);
   
     const playerWorldPos = playerRig.position;
