@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>FPS shooter</title>
         <script defer type="module" src="main.js"></script>
+        <script defer src="menu.js"></script>
         <link rel="stylesheet" href="styles.css">
 
         <!-- fonts: -->
@@ -16,10 +17,22 @@
     <body>
         <div id="menu">
             <header>
-                <h1 id="title" class="Hitmarker">OFFENSIVE</h1>
+                <h1 id="title" class="Hitmarker-bold">OFFENSIVE</h1>
             </header>
-            <main>
-                <div id="log-in"></div>
+            <main class="Hitmarker-normal">
+                <div id="log-in-menu">
+                    <h1>Crie sua conta para guardar seu progresso</h1>
+                    <button commandfor="new-account-prompt" command="show-modal" type="button" id="new-account">NOVA CONTA</button>
+                    <button commandfor="log-in-prompt" command="show-modal" type="button" id="log-in">LOG-IN</button>
+
+                    <dialog id="log-in-prompt">
+                        <button commandfor="log-in-prompt" command="close" id="exit"></button>
+                    </dialog>
+
+                    <dialog id="new-account-prompt">
+                        <button commandfor="new-account-prompt" command="close" id="exit"></button>
+                    </dialog>
+                </div>
             </main>
         </div>
         <div id="blocker" class="dm-mono">
