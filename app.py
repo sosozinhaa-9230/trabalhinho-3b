@@ -2,11 +2,11 @@ import sqlite3, os, hashlib, hmac, json
 from functools import wraps
 from flask import Flask, request, session, jsonify, g, send_from_directory
 
-app = Flask(__name__, static_url_path="")
+app = Flask(__name__)
 app.secret_key = os.environ.get("12345", "change-me")
 
 DATABASE = "app.db"
-N, R, P = 2**17, 8, 1
+N, R, P = 2**17, 8, 1 #OWASP standard hashing
 MAXMEM = 256 * 1024 * 1024
 
 def get_db():
@@ -128,8 +128,7 @@ def load_route():
 @app.get("/me")
 @login_required
 def me_route():
-    row = get_db().execute("SELECT username FROM users WHERE id = ?",
-                           (session["user_id"],)).fetchone()
+    row = get_db().execute("SELECT username FROM users WHERE id = ?", (session["user_id"],)).fetchone()
     if row is None:              # cookie is valid but the user no longer exists
         session.clear()
         return jsonify(error="Not logged in"), 401

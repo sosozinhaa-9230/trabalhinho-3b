@@ -48,8 +48,8 @@ function showLoggedOut() {
 getId("#register-btn").addEventListener("click", async () => {
     try {
         await api("POST", "/register", {
-        username: getId("#username").value,
-        password: getId("#password").value,
+        username: getId("#username-reg").value,
+        password: getId("#password-reg").value,
         });
         console.log("user registered")
     } catch (err) {
@@ -66,9 +66,8 @@ getId("#login-btn").addEventListener("click", async () => {
     const me = await api("GET", "/me");
     getId("#password").value = "";
     showLoggedIn(me.username);
-    showMessage("Logged in.");
   } catch (err) {
-    showMessage(err.message, true);
+    console.log(err.message, true);
   }
 });
 
@@ -79,9 +78,9 @@ getId("#save-btn").addEventListener("click", async () => {
       weapon: getId("#weapon").value,
     };
     await api("PUT", "/save", gameState);
-    showMessage("Saved.");
+    console.log("Saved.");
   } catch (err) {
-    showMessage(err.message, true);
+    console.log(err.message, true);
   }
 });
 
@@ -89,14 +88,14 @@ getId("#load-btn").addEventListener("click", async () => {
   try {
     const data = await api("GET", "/save");
     if (data === null) {
-      showMessage("No save found yet.");
+      console.log("No save found yet.");
       return;
     }
-    $("level").value = data.level ?? 1;
-    $("weapon").value = data.weapon ?? "pistol";
-    showMessage("Loaded.");
+    getId("#level").value = data.level ?? 1;
+    getId("#weapon").value = data.weapon ?? "pistol";
+    console.log("Loaded.");
   } catch (err) {
-    showMessage(err.message, true);
+    console.log(err.message, true);
   }
 });
 
@@ -104,9 +103,9 @@ getId("#logout-btn").addEventListener("click", async () => {
   try {
     await api("POST", "/logout");
     showLoggedOut();
-    showMessage("Logged out.");
+    console.log("Logged out.");
   } catch (err) {
-    showMessage(err.message, true);
+    console.log(err.message, true);
   }
 });
 

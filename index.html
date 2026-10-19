@@ -4,9 +4,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>FPS shooter</title>
-        <script defer type="module" src="../main.js"></script>
-        <script defer src="menu.js"></script>
-        <link rel="stylesheet" href="styles.css">
+        <script type="module" src="/main.js"></script>
+        <script type="module" src="/menu.js"></script>
+        <link rel="stylesheet" href="/styles.css">
 
         <!-- fonts: -->
             <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,33 +28,38 @@
                     <dialog id="log-in-prompt">
                         <button commandfor="log-in-prompt" command="close" id="exit"></button>
                         <section>
-                            <input id="username" placeholder="username">
-                            <input id="password" type="password" placeholder="password">
-                            <button id="login-btn">Log in</button>
+                            <input id="username" placeholder="usuario">
+                            <input id="password" type="senha" placeholder="password">
+                            <button id="login-btn">Entrar</button>
                         </section>
+                        <p id="message"></p>
                     </dialog>
 
                     <dialog id="new-account-prompt">
                         <button commandfor="new-account-prompt" command="close" id="exit"></button>
-                        <input id="username" placeholder="username">
-                        <input id="password" type="password" placeholder="password">
-                        <button id="register-btn">Register</button>
+                        <section>
+                            <input id="username-reg" placeholder="usuario">
+                            <input id="password-reg" type="password" placeholder="senha">
+                            <button id="register-btn">Registrar</button>
+                        </section>    
+                        <p id="message-reg"></p>
                     </dialog>
                 </div>
                 <section id="game-section" hidden>
                     <p>Logged in as <strong id="who"></strong></p>
                     <label>Level <input id="level" type="number" value="1"></label>
-                    <label>Weapon
+                    <label>Arma
                     <select id="weapon">
-                        <option>pistol</option>
+                        <option>pistola</option>
                         <option>shotgun</option>
                         <option>rifle</option>
                     </select>
                     </label>
-                    <button id="save-btn">Save</button>
-                    <button id="load-btn">Load</button>
-                    <button id="logout-btn">Log out</button>
+                    <button id="save-btn">Salvar</button>
+                    <button id="load-btn">Carregar</button>
+                    <button id="logout-btn">Sair</button>
                 </section>
+                <br>
             </main>
         </div>
         <div id="blocker" class="dm-mono">
