@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>FPS shooter</title>
-        <script defer type="module" src="main.js"></script>
+        <script defer type="module" src="../main.js"></script>
         <script defer src="menu.js"></script>
         <link rel="stylesheet" href="styles.css">
 
@@ -27,16 +27,38 @@
 
                     <dialog id="log-in-prompt">
                         <button commandfor="log-in-prompt" command="close" id="exit"></button>
+                        <section>
+                            <input id="username" placeholder="username">
+                            <input id="password" type="password" placeholder="password">
+                            <button id="login-btn">Log in</button>
+                        </section>
                     </dialog>
 
                     <dialog id="new-account-prompt">
                         <button commandfor="new-account-prompt" command="close" id="exit"></button>
+                        <input id="username" placeholder="username">
+                        <input id="password" type="password" placeholder="password">
+                        <button id="register-btn">Register</button>
                     </dialog>
                 </div>
+                <section id="game-section" hidden>
+                    <p>Logged in as <strong id="who"></strong></p>
+                    <label>Level <input id="level" type="number" value="1"></label>
+                    <label>Weapon
+                    <select id="weapon">
+                        <option>pistol</option>
+                        <option>shotgun</option>
+                        <option>rifle</option>
+                    </select>
+                    </label>
+                    <button id="save-btn">Save</button>
+                    <button id="load-btn">Load</button>
+                    <button id="logout-btn">Log out</button>
+                </section>
             </main>
         </div>
         <div id="blocker" class="dm-mono">
-            <h1>Clique em qualquer lugar para iniciar o jogo</h1>
+    <h1>Clique em qualquer lugar para iniciar o jogo</h1>
         </div>
         <div id="reticula"></div>
         <div id="UI" class="dm-mono">
