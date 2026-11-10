@@ -9,8 +9,6 @@ if (!localStorage.getItem('hasVisited')) {
     welcomeTextEl.innerHTML = 'Crie sua conta ou entre em uma já existente'
 }
 
-
-
 const authSection = document.querySelector("#log-in-menu");
 const gameSection = document.querySelector("#game-section");
 const messageEl = document.querySelector("#message");

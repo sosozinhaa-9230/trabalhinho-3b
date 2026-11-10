@@ -4,8 +4,7 @@ const skyBoxLoader = new THREE.CubeTextureLoader();
 skyBoxLoader.setPath('textures/skybox/');
 
 let ammo = 20
-let isActive = false
-
+let isActive = true
 //dimensõoes assumidas para escala como: 1u = 1m
 
 //algoritimo a* (e suas dependencias)
@@ -416,6 +415,7 @@ if (isActive) {
   //requisição do pointer lock quando o blocker da pagina eh clicado
   blocker.addEventListener('click', () => {
     renderer.domElement.requestPointerLock();
+    console.log("blocker clicked")
   });
 
   //deteccao da perda de pointer lock, vai ser necessaria pra um overlay esperando o foco
@@ -444,6 +444,7 @@ if (isActive) {
     if (code === 'KeyS') { keys.s = value; }
     if (code === 'KeyD') { keys.d = value; }
     if (code === 'Space') { keys.space = value;}
+    if (code === 'Escape') { window.location.href = "/index.html";}
   }
 
   //skybox
@@ -570,9 +571,8 @@ if (isActive) {
   function animate() {
     const deltaTime = clock.getDelta();
     
-    if (isLocked && isActive) {
+    if (isLocked) {
       updateMovement(5);
-    
       const playerWorldPos = playerRig.position;
       for (const enemy of enemies) {
         enemy.update(deltaTime, playerWorldPos);

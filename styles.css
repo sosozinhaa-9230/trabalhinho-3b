@@ -27,9 +27,15 @@ body {
             top: calc(50vh - 20rem);
             h1 {
                 color: white;
-                font-size: 30rem;
+                font-size: 14vw;
                 text-align: center;
                 margin-top: 10px;
+            }
+            @media (max-width: 60rem) {
+                h1 {
+                    transform: rotate(90deg);
+                    font-size: 14vh;
+                }
             }
         }
         main {
