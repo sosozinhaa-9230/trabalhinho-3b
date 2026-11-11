@@ -44,6 +44,18 @@ body {
         bottom: 10px;
         right: 50px;
     }
+    #health {
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+    }
+    #health-bar {
+        width: 100px;
+        background-color: lightgreen;
+        height: 0.7em;
+        margin-top: 0.4em;
+        display: block;
+    }
 }
 
 .dm-mono {

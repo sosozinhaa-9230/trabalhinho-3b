@@ -1,9 +1,11 @@
 import * as THREE from 'three';
+import { element } from 'three/tsl';
 
 const skyBoxLoader = new THREE.CubeTextureLoader();
 skyBoxLoader.setPath('textures/skybox/');
 
 let ammo = 20
+let health = 100
 let isActive = true
 //dimensõoes assumidas para escala como: 1u = 1m
 
@@ -22,6 +24,15 @@ class PathNode {
 }
 
 if (isActive) {
+  function damage() {
+    if (health > 0) {
+      health -= 10;
+      document.querySelector("#health-bar").style.width = `${health}px`
+      return
+    }
+    return -1
+  }
+
   function createGrid(width, height) {
     const grid = [];
     for (let x = 0; x < width; x++) {
@@ -264,6 +275,16 @@ if (isActive) {
       let angleDiff = targetAngle - this.mesh.rotation.y;
       angleDiff = Math.atan2(Math.sin(angleDiff), Math.cos(angleDiff));
       this.mesh.rotation.y += angleDiff * Math.min(this.rotationSpeed * deltaTime, 1);
+    }
+    
+    damagePlayer(deltaTime) {
+      const localEnemyPos = this.mesh.position
+      const playerPosition = playerRig.position
+      if (localEnemyPos.distanceTo(playerPosition) < 1) {
+        console.log(deltaTime)
+        damage()
+        console.log("damage")
+      }
     }
   }
 
@@ -576,6 +597,7 @@ if (isActive) {
       const playerWorldPos = playerRig.position;
       for (const enemy of enemies) {
         enemy.update(deltaTime, playerWorldPos);
+        enemy.damagePlayer(deltaTime)
       }
       if (muzzleFlash.intensity > 0) {
         muzzleFlash.intensity -= 250
