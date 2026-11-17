@@ -48,6 +48,7 @@ body {
         position: absolute;
         display: flex;
         flex-direction: row;
+        right: 15px;
     }
     #health-bar {
         width: 100px;
