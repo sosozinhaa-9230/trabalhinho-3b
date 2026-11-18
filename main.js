@@ -14,6 +14,8 @@ let userData = getUserData().split('$')
 let level = parseInt(userData[0])
 let weapon = userData[1]
 
+console.log(weapon)
+
 let ammo = (weapon === "pistola") ? 20 : 50
 let health = 100
 let isActive = true
