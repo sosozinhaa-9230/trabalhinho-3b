@@ -64,7 +64,7 @@ body {
 
                 a {
                     width: 90%;
-                    height: 5%;
+                    height: calc(3rem + 30px);
                     display: block;
                     margin: auto;
                     button {
@@ -256,8 +256,8 @@ body {
 }
 @keyframes show-content {
     0% { opacity: 0;}
-    60% { opacity: 0;}
-    65% { opacity: 1;}
+    40% { opacity: 0;}
+    50% { opacity: 1;}
     100% { opacity: 1;}
 }
 @keyframes background-darken {

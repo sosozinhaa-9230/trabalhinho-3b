@@ -1,10 +1,11 @@
 const getId = (id) => document.querySelector(id);
+const VH = window.innerHeight/100
 
 window.addEventListener('scroll', () => {
-	if (window.scrollY > 1122) {
+	if (window.scrollY > 70*VH) {
 		
 		window.scrollTo({
-			top: 1122,
+			top: (70*VH),
 			behavior: 'instant'
 		});
 		

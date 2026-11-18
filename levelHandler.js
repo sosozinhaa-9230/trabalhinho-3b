@@ -20,6 +20,7 @@ async function api(method, url, body) {
 }
 
 async function pushNewLevel(level, weapon) {
+    getId("#current-level").innerHTML = `level: ${level}`
     try {
         const gameState = {
             level: level,

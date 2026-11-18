@@ -45,10 +45,9 @@ body {
         right: 50px;
     }
     #health {
-        position: absolute;
+        
         display: flex;
         flex-direction: row;
-        right: 15px;
     }
     #health-bar {
         width: 100px;
@@ -73,4 +72,10 @@ body {
   font-family: "Hitmarker";
   font-weight: normal;
   font-style: italic;
+}
+
+#health-holder {
+    width: max-content;
+    position: absolute;
+    right: 15px;
 }

@@ -312,10 +312,12 @@ if (isActive) {
 				if (damage() !== -1) {
 					timeOfLastAtack = clock.elapsedTime
 					console.log("damage")
+					
 				} else {
 					health = 100
 					level = 1
 					pushNewLevel(level, weapon)
+					playerRig.position.set(0, 5, 10);
 				}
 			}
 		}
@@ -561,8 +563,6 @@ if (isActive) {
 						ENEMY_COUNT = Math.round(5*(level*1.01))
 
 						pushNewLevel(level, weapon)
-						
-						getId("#current-level").innerHTML = `level: ${level}`
 					}
 				} else {
 					const wallHitSFx = new Audio('SFx/freesound_community-080998_bullet-hit-39870.mp3');
@@ -620,7 +620,7 @@ if (isActive) {
 		}
 	}
 	
-	document.addEventListener('mousedown', shoot())
+	document.addEventListener('mousedown', shoot)
 	document.addEventListener('keypress', (e) => {
 		if (e.code === 'KeyR') {
 			const reloadSFx = new Audio('SFx/freesound_community-1911-reload-6248.mp3');
